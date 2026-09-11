@@ -82,6 +82,7 @@ This workflow's core communication rules — action first, numbered steps, no "H
   > *"Don't assume. Don't hide confusion. Surface tradeoffs."*
 - **[ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd)** — *"A skill to stop your coding agent from burying the answer. ADHD-friendly output."* Its rule set (lead with the action, cap lists, no preamble, no "Hope this helps!") is the direct source of this repo's Communication Rules and Response Format sections.
   > *"Action first. Steps numbered. No 'Hope this helps!'"*
+- **J. Russell Ramsay and Anthony L. Rostain**, authors of *The Adult ADHD Tool Kit* — the above repo credits its approach as loosely based on this book, adapted for how an LLM should respond rather than how a human should organize their day.
 
 ---
 
