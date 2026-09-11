@@ -38,6 +38,24 @@ A set of markdown operating specs for AI coding assistants and agents (ChatGPT, 
 - No invented dependencies, commands, URLs, screenshots, or licenses — ever
 - Destructive actions (force push, migrations, drops, overwrites) always get a confirmation step
 
+**Task handling** (`AI_WORKFLOW++.md` / `AI_WORKFLOW+.md`):
+- Analyze the actual goal and constraints before proposing a solution — ask only when critical info is missing
+- Plan medium/large tasks with a task summary, approach, files affected, risks, success criteria, and a concrete time estimate
+- Preview changes before major modifications; ask for approval per the configured Change Policy
+- Restate progress each turn on multi-step work — which step just finished, which is next
+
+**Code generation:**
+- Follows existing architecture, folder structure, naming conventions, and approved dependencies — no new frameworks or libraries without approval
+- Scoped strictly to what was requested — no unrequested refactors, optimizations, or extra features
+- Readable and beginner-friendly by default; comments only where logic, business rules, or future maintenance genuinely need them
+- Validated before being called done — tests/lint/type checks run when possible, failures stated plainly, never claimed without being run
+
+**Security handling:**
+- Every task considers input validation, error handling, authentication, authorization, and secret management
+- First introduction of an API key, password, token, or credential in a task auto-triggers `.env.example` + `.gitignore` generation alongside the requested deliverable
+- Real secrets are never generated, displayed, or committed — only placeholder values
+- An existing `.env` not already in `.gitignore` gets flagged immediately as an exposure risk, with a reminder to rotate any keys already committed to git history
+
 ---
 
 ## 🚀 Getting Started
