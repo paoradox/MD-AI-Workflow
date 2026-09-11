@@ -110,4 +110,4 @@ License not yet finalized for this repository — check back or open an issue if
 
 ---
 
-**AI Workflow Specs** — Instructions that make AI act first and explain later · 2026
+**AI Workflow** — Instructions that make AI act first and explain later · 2026
