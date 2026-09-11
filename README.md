@@ -3,7 +3,7 @@
 [![Built with](https://img.shields.io/badge/built_with-Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](https://www.markdownguide.org/)
 [![Use case](https://img.shields.io/badge/use_case-AI_%2F_AI_Agent_Instructions-6E56CF?style=for-the-badge)](#)
 
-A set of markdown operating specs for AI coding assistants and agents (Claude, Claude Code, and similar tools) — built to enforce action-first, no-filler responses, numbered steps, honest failure states, and accurate README generation with zero invented information.
+A set of markdown operating specs for AI coding assistants and agents (ChatGPT, DeepSeek, Claude, and similar tools) — built to enforce action-first, no-filler responses, numbered steps, honest failure states, and accurate README generation with zero invented information.
 
 ---
 
