@@ -77,9 +77,9 @@ A set of markdown operating specs for AI coding assistants and agents (ChatGPT, 
 
 This workflow's core communication rules — action first, numbered steps, no "Hope this helps!," surfacing confusion instead of silently guessing, and treating every response as something to verify rather than assume — were shaped in large part by the ideas in:
 
+- **[Andrej Karpathy](https://x.com/karpathy)**, whose observations on common LLM coding pitfalls are the original source the above repo draws from.
 - **[multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)** — *"A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."* Its four principles (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution) directly informed how this repo's specs push back on models burying the answer, overcomplicating solutions, or making silent assumptions.
   > *"Don't assume. Don't hide confusion. Surface tradeoffs."*
-- **[Andrej Karpathy](https://x.com/karpathy)**, whose observations on common LLM coding pitfalls are the original source the above repo draws from.
 - **[ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd)** — *"A skill to stop your coding agent from burying the answer. ADHD-friendly output."* Its rule set (lead with the action, cap lists, no preamble, no "Hope this helps!") is the direct source of this repo's Communication Rules and Response Format sections.
   > *"Action first. Steps numbered. No 'Hope this helps!'"*
 
