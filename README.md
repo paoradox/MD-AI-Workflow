@@ -106,7 +106,7 @@ This workflow's core communication rules — action first, numbered steps, no "H
 
 ## 📄 License
 
-License not yet finalized for this repository — check back or open an issue if you're planning to reuse these specs.
+Apache License 2.0
 
 ---
 
