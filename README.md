@@ -10,16 +10,20 @@ A set of markdown operating specs for AI coding assistants and agents (ChatGPT, 
 ## 📁 Repository Structure
 
 ```
+
 .
-├── Master file/
-│   └── AI_WORKFLOW++.md        # Full spec — coding behavior, communication rules,
-│                                # README generation, and .env/.gitignore handling, all in one file
-│
-└── Split file/
-    ├── AI_WORKFLOW+.md          # Same as above, minus README generation
-    └── README_GENERATION.md     # README generation only — usable independently,
-                                  # with no dependency on the file above
-```
+├── 📁 Code
+│   ├── 📁 Master file
+│   │   └── 📝 AI_CODE++.md       # Full spec — coding behavior, communication rules,
+│   │                                     # README generation, and .env/.gitignore handling, all in one file
+│   └── 📁 Split file
+│       ├── 📝 AI_CODE+.md        # Same as above, minus README generation
+│       └── 📝 README_GENERATION.md   # README generation only — usable independently,
+│       │                                 # with no dependency on the file above
+└── 📁 Design
+│   │   └── 📝 AI_WEBDESIGN.md       # Full spec — coding behavior, communication rules,
+│   │   └── 📝 README_GENERATION.md   # README generation only — usable independently,
+│   │   │                                 # with no dependency on the file above
 
 ---
 
@@ -27,8 +31,8 @@ A set of markdown operating specs for AI coding assistants and agents (ChatGPT, 
 
 | File | Use it when... |
 |---|---|
-| **`Master file/AI_WORKFLOW++.md`** | You want one file that governs coding behavior *and* README generation together |
-| **`Split file/AI_WORKFLOW+.md`** | You want coding-behavior rules only, without README generation bundled in |
+| **`Master file/AI_CODE++.md`** | You want one file that governs coding behavior *and* README generation together |
+| **`Split file/AI_CODE+.md`** | You want coding-behavior rules only, without README generation bundled in |
 | **`Split file/README_GENERATION.md`** | You just need a README generated — for any project, with or without the rest of the workflow spec |
 
 **Core behaviors enforced across all specs:**
