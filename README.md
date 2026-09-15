@@ -1,4 +1,4 @@
-# MD-AI-Workflow
+# MD-AI-Code-Workflow
 
 [![Built with](https://img.shields.io/badge/built_with-Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](https://www.markdownguide.org/)
 [![Use case](https://img.shields.io/badge/use_case-AI_%2F_AI_Agent_Instructions-6E56CF?style=for-the-badge)](#)
