@@ -33,7 +33,7 @@ A pair of markdown operating specs for AI coding and design assistants (ChatGPT,
 | **`Code/Split file/README_GENERATION.md`** | You just need a README generated — for any project, with or without the rest of the workflow spec |
 | **`Design/AI_DESIGN++.md`** | You're working on UI/UX design, frontend implementation, design systems, accessibility reviews, or interface audits |
 
-**Core behaviors enforced across both specs:**
+**Core behaviors enforced across all specs:**
 - Action-first responses — no "Let's think about this" openers, no "Hope this helps!" closers
 - Numbered steps for any multi-step task
 - Plain, unsoftened failure states — what broke, why, and the fix, in that order
