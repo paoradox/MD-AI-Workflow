@@ -19,6 +19,7 @@ A pair of markdown operating specs for AI coding and design assistants (ChatGPT,
 │ └── 📝 README_GENERATION.md
 ├── 📁 Design
 │ └── 📝 AI_DESIGN++.md
+├── 📁 et. al self explanatory
 └── 📝 README.md
 ```
 
