@@ -46,7 +46,7 @@ The original `.md` files are preserved as readable source prompts. The `SKILL.md
 
 `Code/SKILL.md`
 
-- Skill name: `ai-code-plus-plus`
+- Skill name: `code`
 - Source file: `Code/AI_CODE++.md`
 - Invocation aliases:
   - `/code`
@@ -59,7 +59,7 @@ Use this skill for coding tasks that need strict scope control, project-conventi
 
 `Design/SKILL.md`
 
-- Skill name: `ai-design-plus-plus`
+- Skill name: `design`
 - Source file: `Design/AI_DESIGN++.md`
 - Invocation aliases:
   - `/design`
@@ -71,7 +71,7 @@ Use this skill for interface design, frontend implementation, redesigns, design 
 
 `Electron-Portable/SKILL.md`
 
-- Skill name: `nodejs-electron-portability`
+- Skill name: `electron-portable`
 - Source file: `Electron-Portable/APP_PORTABILITY_PROMPT.md`
 - Invocation alias:
   - `/electron-portable`
@@ -107,13 +107,13 @@ For tools that support skill folders, copy the skill folder contents into the to
 Recommended folder names:
 
 ```text
-ai-code-plus-plus/
+code/
   SKILL.md
 
-ai-design-plus-plus/
+design/
   SKILL.md
 
-nodejs-electron-portability/
+electron-portable/
   SKILL.md
 ```
 
@@ -126,7 +126,7 @@ If the platform supports project instructions, paste the `SKILL.md` body into th
 If the platform does not support YAML frontmatter, keep the important values as plain text:
 
 ```text
-Name: ai-code-plus-plus
+Name: code
 Description: Use for coding-agent tasks that need consistent implementation behavior, scoped code changes, README generation, environment/secret handling, validation, and concise action-first responses.
 ```
 
@@ -138,12 +138,12 @@ The slash aliases are optional shortcuts. The actual skill identity is the `name
 
 | Task | Skill | Alias |
 | --- | --- | --- |
-| Code implementation, bug fixes, refactors within scope, validation | `ai-code-plus-plus` | `/code` |
-| Code-project README generation | `ai-code-plus-plus` | `/code-readme` |
-| `.env.example`, `.gitignore`, and secret-handling setup | `ai-code-plus-plus` | `/code-env` |
-| UI/UX design, frontend implementation, redesigns, accessibility audits | `ai-design-plus-plus` | `/design` |
-| README generation for frontend/design-heavy projects | `ai-design-plus-plus` | `/design-readme` |
-| JavaScript/Node.js/Express-based app to portable Electron launcher workflow | `nodejs-electron-portability` | `/electron-portable` |
+| Code implementation, bug fixes, refactors within scope, validation | `code` | `/code` |
+| Code-project README generation | `code` | `/code-readme` |
+| `.env.example`, `.gitignore`, and secret-handling setup | `code` | `/code-env` |
+| UI/UX design, frontend implementation, redesigns, accessibility audits | `design` | `/design` |
+| README generation for frontend/design-heavy projects | `design` | `/design-readme` |
+| JavaScript/Node.js/Express-based app to portable Electron launcher workflow | `electron-portable` | `/electron-portable` |
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: ai-code-plus-plus
+name: code
 description: Use for coding-agent tasks that need consistent implementation behavior, scoped code changes, README generation, environment/secret handling, validation, and concise action-first responses.
 metadata:
   short-description: Consistent coding workflow, README mode, env handling, validation, and action-first responses.
@@ -28,10 +28,10 @@ This file is a canonical `SKILL.md`. Use the same body across AI agents, with on
 
 | Platform / Agent | Recommended Use |
 | ---------------- | --------------- |
-| Codex / OpenAI Skills | Keep this folder as `ai-code-plus-plus/` with this file named `SKILL.md`. The `name` and `description` frontmatter control discovery. |
+| Codex / OpenAI Skills | Keep this folder as `code/` with this file named `SKILL.md`. The `name` and `description` frontmatter control discovery. |
 | ChatGPT / OpenAI Agents | Use this file as a skill or reusable instruction bundle. Preserve YAML frontmatter when the platform supports skills; otherwise paste the body into project instructions or a custom GPT knowledge/instructions area. |
 | Claude | Paste the body into Project Instructions or a reusable project knowledge file. If YAML frontmatter is unsupported, keep the `name` and `description` as plain text at the top. |
-| Claude Code | Store this as a project instruction file or reusable command/workflow note. If slash commands are used, map a command such as `/ai-code-plus-plus` or `/readme` to the relevant section. |
+| Claude Code | Store this as a project instruction file or reusable command/workflow note. If slash commands are used, map `/code`, `/code-readme`, or `/code-env` to the relevant section. |
 | DeepSeek | Use as a system/developer instruction block or project-level instruction file. Preserve the priority order and mode triggers. |
 | Gemini | Use as Gems/project instructions or an agent instruction file. Keep task modes and validation rules intact. |
 | Other AI Agents | Use as a reusable project instruction file. Preserve the purpose, triggers, workflow, security rules, and self-check. |
@@ -49,9 +49,9 @@ Slash commands are optional aliases. The real skill identity is the frontmatter 
 ### Integration Notes
 
 - Keep this file as `SKILL.md` when the agent supports skill folders.
-- Use lowercase hyphenated folder names such as `ai-code-plus-plus`.
+- Use lowercase folder names such as `code`.
 - If an agent does not support YAML frontmatter, keep the same values in a plain heading:
-  - Name: `ai-code-plus-plus`
+  - Name: `code`
   - Description: Use for coding-agent tasks that need consistent implementation behavior, scoped code changes, README generation, environment/secret handling, validation, and concise action-first responses.
 - Do not remove the security rules, priority order, or self-check when adapting to another platform.
 - Platform rules override this skill when they conflict with system, developer, safety, or tool instructions.
