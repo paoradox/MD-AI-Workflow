@@ -1,3 +1,16 @@
+---
+name: ai-code-plus-plus-source
+description: Source Markdown operating spec for AI coding tasks, README generation, environment/secret handling, validation, and action-first responses.
+metadata:
+  type: source-spec
+  skill-name: code
+  skill-file: SKILL.md
+  invocation-aliases:
+    - /code
+    - /code-readme
+    - /code-env
+---
+
 # AI\_CODE++.md
 
 ## Purpose

@@ -1,3 +1,15 @@
+---
+name: ai-design-plus-plus-source
+description: Source Markdown operating spec for UI/UX design, frontend experiences, design systems, accessibility reviews, interface audits, and design README generation.
+metadata:
+  type: source-spec
+  skill-name: design
+  skill-file: SKILL.md
+  invocation-aliases:
+    - /design
+    - /design-readme
+---
+
 # AI_DESIGN++.md
 
 ## Purpose
