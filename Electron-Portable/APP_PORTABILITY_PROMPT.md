@@ -1,3 +1,14 @@
+---
+name: app-portability-prompt-source
+description: Source Markdown prompt for wrapping JavaScript/Node.js/Express-based web apps as portable, editable Electron desktop apps.
+metadata:
+  type: source-spec
+  skill-name: electron-portable
+  skill-file: SKILL.md
+  invocation-aliases:
+    - /electron-portable
+---
+
 # Prompt: Wrap a Node.js/Express web app as a portable, editable desktop app with Electron
 
 Use this when you have an existing Node.js + Express web application (with or
