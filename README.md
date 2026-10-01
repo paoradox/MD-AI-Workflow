@@ -3,128 +3,204 @@
 [![Built with](https://img.shields.io/badge/built_with-Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](https://www.markdownguide.org/)
 [![Use case](https://img.shields.io/badge/use_case-AI_%2F_AI_Agent_Instructions-6E56CF?style=for-the-badge)](#)
 
-A pair of markdown operating specs for AI coding and design assistants (ChatGPT, DeepSeek, Claude, and similar tools) — built to enforce action-first, no-filler responses, numbered steps, honest failure states, accessibility-aware design, and accurate README generation with zero invented information.
+Reusable Markdown operating specs and `SKILL.md` files for AI coding, design, README generation, environment handling, and Node.js-to-Electron portability workflows.
+
+The repository keeps both the original prompt/spec files and skill-ready versions that can be used by ChatGPT, Codex, Claude, Claude Code, DeepSeek, Gemini, and other AI agents.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
-```
+```text
 .
-├── 📁 Code
-│ ├── 📁 Master file
-│ │ └── 📝 AI_CODE++.md
-│ └── 📁 Split file
-│ ├── 📝 AI_CODE+.md
-│ └── 📝 README_GENERATION.md
-├── 📁 Design
-│ └── 📝 AI_DESIGN++.md
-├── 📁 et. al self explanatory
-└── 📝 README.md
+├── Code
+│   ├── AI_CODE++.md
+│   └── SKILL.md
+├── Design
+│   ├── AI_DESIGN++.md
+│   └── SKILL.md
+├── Electron-Portable
+│   ├── APP_PORTABILITY_PROMPT.md
+│   └── SKILL.md
+├── LICENSE
+└── README.md
 ```
 
 ---
 
-## ✨ What's Included
+## What's Included
 
-| File | Use it when... |
-|---|---|
-| **`Code/Master file/AI_WORKFLOW++.md`** | You want one file that governs coding behavior *and* README generation together |
-| **`Code/Split file/AI_WORKFLOW+.md`** | You want coding-behavior rules only, without README generation bundled in |
-| **`Code/Split file/README_GENERATION.md`** | You just need a README generated — for any project, with or without the rest of the workflow spec |
-| **`Design/AI_DESIGN++.md`** | You're working on UI/UX design, frontend implementation, design systems, accessibility reviews, or interface audits |
+| Folder | Original File | Skill File | Use It When |
+| --- | --- | --- | --- |
+| `Code/` | `AI_CODE++.md` | `Code/SKILL.md` | You need consistent coding-agent behavior, scoped implementation, README generation, `.env` / `.gitignore` handling, validation, and action-first responses. |
+| `Design/` | `AI_DESIGN++.md` | `Design/SKILL.md` | You are working on UI/UX design, frontend implementation, design systems, accessibility reviews, interface audits, visual content architecture, or design README generation. |
+| `Electron-Portable/` | `APP_PORTABILITY_PROMPT.md` | `Electron-Portable/SKILL.md` | You want to wrap an existing JavaScript/Node.js/Express-based web app as a portable, editable Electron desktop app with a thin launcher, LAN URLs, shortcuts, and port controls. |
 
-**Core behaviors enforced across all specs:**
-- Action-first responses — no "Let's think about this" openers, no "Hope this helps!" closers
-- Numbered steps for any multi-step task
-- Plain, unsoftened failure states — what broke, why, and the fix, in that order
-- No invented dependencies, commands, URLs, screenshots, design tokens, or licenses — ever
-- Destructive actions (force push, migrations, drops, overwrites) always get a confirmation step
-
-**Coding behavior** (`AI_CODE++.md and AI_CODE+.md`):
-- Follows existing architecture, folder structure, naming conventions, and approved dependencies — no new frameworks or libraries without approval
-- Scoped strictly to what was requested — no unrequested refactors, optimizations, or extra features
-- Readable and beginner-friendly by default; comments only where logic, business rules, or future maintenance genuinely need them
-- Validated before being called done — tests/lint/type checks run when possible, failures stated plainly, never claimed without being run
-
-**Design behavior** (`AI_DESIGN++.md`):
-- Design-before-code: user goal, primary task, critical content, and primary action resolved before any layout is proposed
-- Content-first hierarchy built from real content; placeholders and fake metrics/ testimonials never presented as real
-- Actively avoids generic AI-generated layouts (cookie-cutter SaaS pages, repetitive card grids, meaningless hero sections, decorative gradients)
-- Accessibility treated as a mandatory design consideration — semantic HTML, keyboard interaction, focus states, contrast, form labelling, and non-color-dependent meaning — not bolted on after visual development
-
-**README generation** (AI_CODE++.md, AI_DESIGN++.md):
-- Documented only from verifiable source — no invented features, dependencies, commands, URLs, screenshots, or accessibility claims
-- Design READMEs additionally document design system, pages/screens, components, responsive behavior, and implemented accessibility features without overstating WCAG conformance
-- Exported as a single continuous Markdown code block, directly copyable into `README.md`
-
-**Security handling** (`AI_CODE++.md and AI_CODE+.md`):
-- Every task considers input validation, error handling, authentication, authorization, and secret management
-- First introduction of an API key, password, token, or credential in a task auto-triggers `.env.example` + `.gitignore` generation alongside the requested deliverable
-- Real secrets are never generated, displayed, or committed — only placeholder values
-- An existing `.env` not already in `.gitignore` gets flagged immediately as an exposure risk, with a reminder to rotate any keys already committed to git history
+The original `.md` files are preserved as readable source prompts. The `SKILL.md` files add skill frontmatter, cross-agent installation notes, and invocation aliases.
 
 ---
 
-## 🚀 Getting Started
+## Skill Overview
 
-1. **Pick the spec that matches your task** using the table above.
-2. **Upload it to your AI chat session**, or place it in your repo if you're using an agentic coding tool that reads project files directly. Example for Claude Code:
-   ```bash
-   cp AI_CODE++.md ./CLAUDE.md
-   ```
-   Or keep the original filename and reference it explicitly:
-   ```
-   Follow the instructions in AI_CODE++.md for this project.
-   ```
-3. **Reference the file explicitly in your request** — uploading a file does not make an AI automatically apply it. Say so directly, for example:
-   ```
-   Generate a README for this project in accordance with AI_CODE+.md.
-   ```
-   ```
-   Redesign this dashboard in accordance with AI_DESIGN++.md.
-   ```
-4. **Re-attach the file each new session.** Files don't persist across separate chats unless you're using a project/workspace feature that stores them, or the files live in the repo an agentic tool is already reading.
+### Code Skill
 
----
+`Code/SKILL.md`
 
-## 🧩 Which File to Use
+- Skill name: `ai-code-plus-plus`
+- Source file: `Code/AI_CODE++.md`
+- Invocation aliases:
+  - `/code`
+  - `/code-readme`
+  - `/code-env`
 
-| Situation | Use |
-|---|---|
-| Writing, modifying, or reviewing code | `AI_CODE++.md` |
-| Generating a README for a code project | `AI_CODE++.md and/or README_GENERATION.md or` (README Generation Mode) |
-| Setting up `.env` / `.gitignore` or handling secrets | `AI_CODE++.md and/or AI_CODE+.md` |
-| Designing or implementing a UI, page, dashboard, or landing page | `AI_DESIGN++.md` |
-| Want both behaviors, but edited/versioned independently | Both `Code/Split file/` files, uploaded together |
-| Auditing an existing interface for usability or accessibility | `AI_DESIGN++.md` |
-| Generating a README for a design-heavy or frontend project | `AI_DESIGN++.md` (README Generation Mode) |
-| Working on a full product with both code and UI concerns | Both `AI_CODE++.md and AI_DESIGN++.md` files, uploaded together |
+Use this skill for coding tasks that need strict scope control, project-convention awareness, maintainable code, validation, README generation, or safe secret/environment handling.
 
----
+### Design Skill
 
-## 🙏 Acknowledgements
+`Design/SKILL.md`
 
-This workflow's core communication rules — action first, numbered steps, no "Hope this helps!," surfacing confusion instead of silently guessing, and treating every response as something to verify rather than assume — were shaped in large part by the ideas in:
+- Skill name: `ai-design-plus-plus`
+- Source file: `Design/AI_DESIGN++.md`
+- Invocation aliases:
+  - `/design`
+  - `/design-readme`
 
-- **[Andrej Karpathy](https://x.com/karpathy)**, whose observations on common LLM coding pitfalls are the original source the above repo draws from.
-- **[multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)** — *"A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."* Its four principles (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution) directly informed how this repo's specs push back on models burying the answer, overcomplicating solutions, or making silent assumptions.
-  > *"Don't assume. Don't hide confusion. Surface tradeoffs."*
-- **[ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd)** — *"A skill to stop your coding agent from burying the answer. ADHD-friendly output."* Its rule set (lead with the action, cap lists, no preamble, no "Hope this helps!") is the direct source of this repo's Communication Rules and Response Format sections.
-  > *"Action first. Steps numbered. No 'Hope this helps!'"*
-- **J. Russell Ramsay and Anthony L. Rostain**, authors of *The Adult ADHD Tool Kit* — the above repo credits its approach as loosely based on this book, adapted for how an LLM should respond rather than how a human should organize their day.
+Use this skill for interface design, frontend implementation, redesigns, design audits, accessibility-aware reviews, design systems, and README files for design-heavy or frontend projects.
 
-Additional influences on the design and accessibility specs:
+### Electron Portable Skill
 
-- **[Nutlope/hallmark](https://github.com/Nutlope/hallmark)** — informed the design principles and quality rules in `AI_DESIGN++.md`, particularly the stance against generic AI-generated layouts and the push for project-specific visual identity.
-- **[clawhub.ai/turbolego/skills/wcag-skill](https://clawhub.ai/turbolego/skills/wcag-skill)** — informed the accessibility requirements and accessibility validation sections in `AI_DESIGN++.md`, including the distinction between automated findings, manual testing, and formal WCAG conformance claims.
+`Electron-Portable/SKILL.md`
+
+- Skill name: `nodejs-electron-portability`
+- Source file: `Electron-Portable/APP_PORTABILITY_PROMPT.md`
+- Invocation alias:
+  - `/electron-portable`
+
+Use this skill when converting an existing JavaScript/Node.js/Express-based web app into a double-clickable Electron desktop app while keeping the app's actual server/frontend source editable outside the packaged launcher.
 
 ---
 
-## 📄 License
+## Installation And Use
+
+### Option 1: Use As Plain Prompt Files
+
+Upload or paste the relevant original `.md` file or `SKILL.md` into your AI tool, then explicitly ask the agent to follow it.
+
+Examples:
+
+```text
+Follow Code/SKILL.md and use /code to revise this project.
+```
+
+```text
+Follow Design/SKILL.md and use /design to audit this interface.
+```
+
+```text
+Follow Electron-Portable/SKILL.md and use /electron-portable to convert this Express app into a portable Electron launcher.
+```
+
+### Option 2: Install As Skill Folders
+
+For tools that support skill folders, copy the skill folder contents into the tool's skills directory or project instruction area.
+
+Recommended folder names:
+
+```text
+ai-code-plus-plus/
+  SKILL.md
+
+ai-design-plus-plus/
+  SKILL.md
+
+nodejs-electron-portability/
+  SKILL.md
+```
+
+If your tool expects one skill per folder, copy each `SKILL.md` into a folder matching its skill name.
+
+### Option 3: Use With Claude, Claude Code, Gemini, DeepSeek, Or Similar Agents
+
+If the platform supports project instructions, paste the `SKILL.md` body into the project instruction area.
+
+If the platform does not support YAML frontmatter, keep the important values as plain text:
+
+```text
+Name: ai-code-plus-plus
+Description: Use for coding-agent tasks that need consistent implementation behavior, scoped code changes, README generation, environment/secret handling, validation, and concise action-first responses.
+```
+
+The slash aliases are optional shortcuts. The actual skill identity is the `name` field, and automatic activation depends on the `description`.
+
+---
+
+## Trigger And Invocation Reference
+
+| Task | Skill | Alias |
+| --- | --- | --- |
+| Code implementation, bug fixes, refactors within scope, validation | `ai-code-plus-plus` | `/code` |
+| Code-project README generation | `ai-code-plus-plus` | `/code-readme` |
+| `.env.example`, `.gitignore`, and secret-handling setup | `ai-code-plus-plus` | `/code-env` |
+| UI/UX design, frontend implementation, redesigns, accessibility audits | `ai-design-plus-plus` | `/design` |
+| README generation for frontend/design-heavy projects | `ai-design-plus-plus` | `/design-readme` |
+| JavaScript/Node.js/Express-based app to portable Electron launcher workflow | `nodejs-electron-portability` | `/electron-portable` |
+
+---
+
+## Core Behaviors
+
+Across the skills, the specs emphasize:
+
+- Action-first responses with no filler preamble or vague closers.
+- Scoped work that follows existing project structure, conventions, and dependencies.
+- No invented features, commands, URLs, screenshots, accessibility claims, licenses, or test results.
+- Plain failure reporting: what failed, why it failed, and what fixes it.
+- Validation when possible, with unperformed checks stated honestly.
+
+---
+
+## Notes For Agents
+
+- System, developer, safety, and tool instructions override these skills.
+- Destructive actions still require explicit confirmation before execution.
+- Real API keys, passwords, tokens, and credentials must never be generated, displayed, or committed.
+- Automated accessibility results are evidence, not proof of full WCAG conformance.
+- Slash commands such as `/code` or `/design` are aliases only; they are not required for the underlying skill to work.
+
+---
+
+## Validation
+
+The current `SKILL.md` files were checked with the official skill validator:
+
+```text
+Code/SKILL.md                 Skill is valid!
+Design/SKILL.md               Skill is valid!
+Electron-Portable/SKILL.md    Skill is valid!
+```
+
+---
+
+## Acknowledgements
+
+This workflow's communication rules, including action-first responses, numbered steps, no filler closers, surfaced uncertainty, and verification-oriented output, were shaped by:
+
+- [Andrej Karpathy](https://x.com/karpathy), especially observations on common LLM coding pitfalls.
+- [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills), whose principles around thinking before coding, simplicity, surgical changes, and goal-driven execution informed the code workflow.
+- [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd), whose ADHD-friendly output patterns influenced the action-first communication rules.
+- J. Russell Ramsay and Anthony L. Rostain, authors of *The Adult ADHD Tool Kit*, loosely informing the low-friction communication style.
+
+Additional influences on design and accessibility:
+
+- [Nutlope/hallmark](https://github.com/Nutlope/hallmark), especially the stance against generic AI-generated layouts.
+- [clawhub.ai/turbolego/skills/wcag-skill](https://clawhub.ai/turbolego/skills/wcag-skill), especially the distinction between automated accessibility findings, manual testing, and formal conformance claims.
+
+---
+
+## License
 
 Apache License 2.0
 
 ---
 
-**AI Workflow** — Instructions that make AI act first and explain later · 2026
+**AI Workflow** - Instructions that make AI act first and explain later · 2026
