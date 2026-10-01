@@ -22,7 +22,6 @@ The repository keeps both the original prompt/spec files and skill-ready version
 ├── Electron-Portable
 │   ├── APP_PORTABILITY_PROMPT.md
 │   └── SKILL.md
-├── LICENSE
 └── README.md
 ```
 
