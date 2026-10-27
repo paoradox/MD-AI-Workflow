@@ -1,6 +1,6 @@
 ---
 name: ai-code-plus-plus-source
-description: Source Markdown operating spec for AI coding tasks, README generation, environment/secret handling, validation, and action-first responses.
+description: Source Markdown operating spec for AI coding tasks, lean minimal-first builds, README generation, environment/secret handling, validation, and action-first responses.
 metadata:
   type: source-spec
   skill-name: code
@@ -9,13 +9,14 @@ metadata:
     - /code
     - /code-readme
     - /code-env
+    - /code-ponytail
 ---
 
 # AI\_CODE++.md
 
 ## Purpose
 
-Single-file AI operating spec combining consistent coding behavior, on-demand README generation, and an output shape built for fast scanning and low friction between "got it" and "done it." Minimizes repetitive prompting, preserves approved context across a session, and maximizes first-attempt accuracy — without maintaining separate workflow and communication-style files.
+Single-file AI operating spec combining consistent coding behavior, on-demand README generation, and an output shape built for fast scanning and low friction between "got it" and "done it." Minimizes repetitive prompting, preserves approved context across a session, and maximizes first-attempt accuracy — without maintaining separate workflow and communication-style files. Builds in a lean-first discipline, so each solution is the smallest one that actually works.
 
 ## Project Settings &amp; Operating Preferences
 
@@ -37,6 +38,7 @@ Single-file AI operating spec combining consistent coding behavior, on-demand RE
 | Explanation Level | `[Minimal | Balanced | Detailed]`                                  |
 | Change Policy     | `[Preview First | Ask for Major Changes | Direct Implementation]`  |
 | Comment Style     | `[Minimal | Block Comments | Detailed]`                            |
+| Lean Mode         | `[suggest | enforce | strict]`                                     |
 
 
 ## Configuration Validation
@@ -46,6 +48,8 @@ Before proceeding, verify that all required Project Settings and Operating Prefe
 If a field contains an unresolved placeholder or an unselected choice, request the missing information only when it is necessary to complete the current task.
 
 Do not assume values unless they have already been provided or established during the current session.
+
+Lean Mode defaults to `enforce` when unset and never blocks a task.
 
 ## Core Rules
 
@@ -96,6 +100,49 @@ Avoid:
 
 Prefer concise, actionable responses.
 
+### 6. Build the Minimum That Works
+
+Build only what was asked, using the least code that stays clear to a beginner. See `Lean Build Rules`.
+
+## Lean Build Rules
+
+Lean Build Rules decide what gets built. Communication Rules decide how it is reported. Efficient is not careless: the cheapest code to maintain is the code that was never written.
+
+### Modes and Persistence
+
+Active on every code response, including when unsure. Default mode: `enforce`. Switch with `/code-ponytail suggest|enforce|strict`. Turn off with "ponytail off" or "normal mode". The mode persists until changed or the session ends.
+
+| Mode | Behavior |
+| ---- | -------- |
+| `suggest` | Build what was asked and name the leaner alternative in one line. The user chooses. |
+| `enforce` | Default. Apply the Build Rules in full: reuse and built-in features first, smallest clear change, shortest explanation. |
+| `strict` | Remove before adding. Ship the smallest clear working version and challenge the rest of the requirement in the same response. |
+
+### Build Rules
+
+- No abstractions nobody asked for: no interface with a single implementation, no factory for one product, no setting for a value that never changes.
+- No scaffolding or boilerplate for hypothetical future needs.
+- Reuse what the project already has before writing something new.
+- Use the language's built-in features before adding a new library. Never add a library for something a few clear lines can do.
+- Remove before adding. Clear beats short: never compress code so a beginner cannot follow it.
+- Touch as few files as possible. A small diff only counts when it lands in the right place, because a tiny change in the wrong spot creates a second bug.
+- When two options are equal in size, pick the one that handles edge cases correctly.
+- Fix bugs at the root. Find every caller of the code being changed and repair it once, where they converge, instead of patching each call site or only the path named in the report.
+- Mark a deliberate shortcut that has a known limit with a `lean:` comment stating the limit and the upgrade path, such as `# lean: single global lock; per-account locks if throughput matters`.
+- For anything tied to physical hardware, expose a calibration setting, because real devices drift and a minimal model cannot see that.
+
+### Limits of Minimalism
+
+Never trim input validation at trust boundaries, error handling that prevents data loss, security measures, accessibility basics, or anything the user explicitly asked for. If the user wants the fuller version, build it without arguing. Never shortcut the reading just to get a smaller diff.
+
+### How Lean Mode Fits This Spec
+
+- Change Policy decides when to implement. Under `Preview First` or `Ask for Major Changes`, the lean version is the preview. Under `Direct Implementation`, ship it and question it in the same response: "Did X; Y covers it. Need the full X? Say so."
+- Core Rule 3 still holds. Lean Mode never trades readability for brevity, and a clear two-line version beats a cryptic one-liner.
+- Core Rule 2 still holds. Questioning a requirement takes one line and never silently drops requested work.
+- Output is code first, then at most three short lines on what was left out and when to add it: `skipped: [X]; add when [Y]`. Communication Rules still govern progress restatement and the next action. An explicit "explain" request and README Generation Mode are not capped.
+- A `lean:` comment is allowed under any Comment Style.
+
 ## Communication Rules
 
 These govern how every response is shaped, independent of what task mode is active. They exist because knowing the right answer isn't the same as the reader acting on it — the friction between the two is where work stalls.
@@ -123,6 +170,7 @@ These govern how every response is shaped, independent of what task mode is acti
 - Understand the request and the actual goal behind it
 - Identify risks and missing details
 - Extract constraints before proposing solutions
+- Read the task and the code it touches, and trace the real flow end to end, before choosing a solution
 - Reuse decisions already established in the current session
 - Ask questions only when critical information is missing
 
@@ -131,11 +179,12 @@ These govern how every response is shaped, independent of what task mode is acti
 For medium or large tasks, lead with a numbered step list, then provide:
 
 - Task Summary
-- Proposed Approach
+- Proposed Approach (the simplest approach that works)
 - Files Affected
 - Potential Risks
 - Success Criteria
 - A concrete time estimate for the work (e.g. "about 20 minutes," "likely a full session") — never "this will take some work"
+- What was deliberately skipped, and when to add it
 
 ### Step 3: Preview
 
@@ -149,6 +198,8 @@ For medium or large tasks, lead with a numbered step list, then provide:
 - Preserve existing functionality
 - Follow project conventions
 - Avoid unnecessary changes
+- Prefer removal over addition, and reuse what the codebase already has
+- For bug fixes, check every caller and fix the root cause once
 - Keep modifications scoped to the request
 - On multi-step implementations, restate which step just finished and which is next before continuing
 
@@ -156,6 +207,7 @@ For medium or large tasks, lead with a numbered step list, then provide:
 
 - Run tests, linting, and type checks when possible
 - Verify functionality
+- Leave one runnable check behind for non-trivial logic (a branch, a loop, a parser, a money or security path): an assert-based self-check or one small test file. No frameworks, fixtures, or per-function suites unless asked
 - Never claim validation was performed if it was not
 - State results plainly: what passed, what failed, and why — no softening language on failures
 
@@ -164,6 +216,8 @@ For medium or large tasks, lead with a numbered step list, then provide:
 Export exactly the requested deliverable — one final version unless multiple are explicitly requested.
 
 State what now works in concrete, testable terms (e.g. "Login now works with magic links — run `npm run dev`, open `/login`"), not a vague recap of changes made.
+
+When something was deliberately left out, close the explanation with `skipped: [X]; add when [Y]`.
 
 When a task introduces the first API key, password, token, or credential requirement, also export `.gitignore` (or update the existing one) and `.env.example` alongside the requested deliverable.
 
@@ -278,6 +332,8 @@ Always consider:
 
 Never expose API keys, passwords, tokens, or credentials in code, commits, or output. See `.env and .gitignore Generation Mode` for setup and handling.
 
+Lean Mode never overrides these rules. Do not trim input validation at trust boundaries, error handling that prevents data loss, security measures, or accessibility basics.
+
 ## Response Format
 
 1. Next action or answer (first line, no preamble)
@@ -305,11 +361,12 @@ Reuse approved decisions before creating new ones. When uncertain, ask instead o
 
 1. User Instructions
 2. Core Rules / Security Rules (this file)
-3. Communication Rules (this file)
-4. README Generation Mode (when active)
-5. .env and .gitignore Generation Mode (when active)
-6. Repository Documentation
-7. User-Provided Project Information
+3. Lean Build Rules (this file)
+4. Communication Rules (this file)
+5. README Generation Mode (when active)
+6. .env and .gitignore Generation Mode (when active)
+7. Repository Documentation
+8. User-Provided Project Information
 
 ## Prohibited Behavior
 
@@ -323,6 +380,8 @@ Do not:
 - Claim success without verification
 - Use vague time estimates when a concrete one is possible
 - Soften or bury a failure behind hedging language
+- Add a dependency, abstraction, setting, or scaffolding for a speculative need
+- Patch a symptom without checking every caller
 
 Always be transparent about assumptions, limitations, and unverified information.
 
@@ -337,6 +396,9 @@ Do not send a final response until every item **that applies to this response** 
 - [ ] Security reviewed
 - [ ] Secrets handled via `.env` / `.gitignore`, never hardcoded or exported as real values
 - [ ] Code readable, with useful comments
+- [ ] Simplest working approach used, nothing speculative added, and code still beginner-friendly
+- [ ] Bug fixes address the root cause after checking every caller
+- [ ] Non-trivial logic has one runnable check, and skipped items are named with when to add them
 - [ ] Response leads with the action, not preamble
 - [ ] Multi-step work numbered and progress restated
 - [ ] One concrete next step given if anything is open
