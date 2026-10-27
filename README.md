@@ -31,7 +31,7 @@ The repository keeps both the original prompt/spec files and skill-ready version
 
 | Folder | Original File | Skill File | Use It When |
 | --- | --- | --- | --- |
-| `Code/` | `AI_CODE++.md` | `Code/SKILL.md` | You need consistent coding-agent behavior, scoped implementation, README generation, `.env` / `.gitignore` handling, validation, and action-first responses. |
+| `Code/` | `AI_CODE++.md` | `Code/SKILL.md` | You need consistent coding-agent behavior, lean minimal-first builds, scoped implementation, README generation, `.env` / `.gitignore` handling, validation, and action-first responses. |
 | `Design/` | `AI_DESIGN++.md` | `Design/SKILL.md` | You are working on UI/UX design, frontend implementation, design systems, accessibility reviews, interface audits, visual content architecture, or design README generation. |
 | `Electron-Portable/` | `APP_PORTABILITY_PROMPT.md` | `Electron-Portable/SKILL.md` | You want to wrap an existing JavaScript/Node.js/Express-based web app as a portable, editable Electron desktop app with a thin launcher, LAN URLs, shortcuts, and port controls. |
 
@@ -51,8 +51,23 @@ The original `.md` files are preserved as readable source prompts. The `SKILL.md
   - `/code`
   - `/code-readme`
   - `/code-env`
+  - `/code-ponytail [suggest|enforce|strict]`
 
 Use this skill for coding tasks that need strict scope control, project-convention awareness, maintainable code, validation, README generation, or safe secret/environment handling.
+
+It also includes **Lean Build Rules**, a minimal-first build discipline: build only what was asked, reuse what the project already has, prefer built-in features over new libraries, and fix bugs at the root. Code stays beginner-friendly, and security, input validation, and error handling are never trimmed.
+
+Lean Build Rules have three modes, set with the `Lean Mode` project setting or `/code-ponytail`:
+
+| Mode | Behavior |
+| --- | --- |
+| `suggest` | Builds what was asked and names the leaner alternative in one line. |
+| `enforce` | Default. Smallest clear change, shortest explanation. |
+| `strict` | Removes before adding and challenges the rest of the requirement. |
+
+Turn it off for a session by saying `ponytail off` or `normal mode`.
+
+Besides the slash aliases, the skill also triggers on phrases such as "be lazy", "lean mode", "simplest solution", "yagni", and "do less", or on complaints about over-engineering, bloat, or unnecessary dependencies.
 
 ### Design Skill
 
@@ -92,6 +107,10 @@ Follow Code/SKILL.md and use /code to revise this project.
 ```
 
 ```text
+Follow Code/SKILL.md and use /code-ponytail strict to build this feature with the least code that stays clear.
+```
+
+```text
 Follow Design/SKILL.md and use /design to audit this interface.
 ```
 
@@ -126,7 +145,7 @@ If the platform does not support YAML frontmatter, keep the important values as 
 
 ```text
 Name: code
-Description: Use for coding-agent tasks that need consistent implementation behavior, scoped code changes, README generation, environment/secret handling, validation, and concise action-first responses.
+Description: Use for coding-agent tasks that need consistent implementation behavior, lean minimal-first solutions, scoped code changes, README generation, environment/secret handling, validation, and concise action-first responses. Also use when the user says "be lazy", "lean mode", "simplest solution", "yagni", or "do less", or complains about over-engineering, bloat, or unnecessary dependencies.
 ```
 
 The slash aliases are optional shortcuts. The actual skill identity is the `name` field, and automatic activation depends on the `description`.
@@ -140,6 +159,7 @@ The slash aliases are optional shortcuts. The actual skill identity is the `name
 | Code implementation, bug fixes, refactors within scope, validation | `code` | `/code` |
 | Code-project README generation | `code` | `/code-readme` |
 | `.env.example`, `.gitignore`, and secret-handling setup | `code` | `/code-env` |
+| Lean, minimal-first builds (`suggest`, `enforce`, or `strict`) | `code` | `/code-ponytail` |
 | UI/UX design, frontend implementation, redesigns, accessibility audits | `design` | `/design` |
 | README generation for frontend/design-heavy projects | `design` | `/design-readme` |
 | JavaScript/Node.js/Express-based app to portable Electron launcher workflow | `electron-portable` | `/electron-portable` |
@@ -152,6 +172,7 @@ Across the skills, the specs emphasize:
 
 - Action-first responses with no filler preamble or vague closers.
 - Scoped work that follows existing project structure, conventions, and dependencies.
+- Lean-first builds in the Code skill: the smallest clear solution that works, kept beginner-friendly, with security and validation never trimmed.
 - No invented features, commands, URLs, screenshots, accessibility claims, licenses, or test results.
 - Plain failure reporting: what failed, why it failed, and what fixes it.
 - Validation when possible, with unperformed checks stated honestly.
@@ -163,6 +184,7 @@ Across the skills, the specs emphasize:
 - System, developer, safety, and tool instructions override these skills.
 - Destructive actions still require explicit confirmation before execution.
 - Real API keys, passwords, tokens, and credentials must never be generated, displayed, or committed.
+- Lean Mode never overrides security rules, input validation, or error handling, and never trades readability for brevity.
 - Automated accessibility results are evidence, not proof of full WCAG conformance.
 - Slash commands such as `/code` or `/design` are aliases only; they are not required for the underlying skill to work.
 
@@ -188,6 +210,8 @@ This workflow's communication rules, including action-first responses, numbered 
 - [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills), whose principles around thinking before coding, simplicity, surgical changes, and goal-driven execution informed the code workflow.
 - [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd), whose ADHD-friendly output patterns influenced the action-first communication rules.
 - J. Russell Ramsay and Anthony L. Rostain, authors of *The Adult ADHD Tool Kit*, loosely informing the low-friction communication style.
+
+The Lean Build Rules in the Code skill were inspired by the minimal-first approach of the ponytail skill by [DietrichGebert](https://github.com/DietrichGebert).
 
 Additional influences on design and accessibility:
 
